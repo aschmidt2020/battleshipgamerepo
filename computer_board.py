@@ -1,6 +1,7 @@
 from ship import Ship
+import random
 
-class HumanBoard:
+class ComputerBoard:
     def __init__(self):
         self.board = [[]]
         self.create_board()
@@ -125,27 +126,18 @@ class HumanBoard:
             can_place_ship = self.can_place_ship(ship, input('Please select horizontal or vertical (h/v): '), int(input('Please input a new row: ')), int(input('Please input a new column: ')))
 
     def place_all_ships(self):
+        ship_direction_list = ['h', 'v']
         
         for ship in self.ships_list:
             print(f'\nPlease place {ship.name} (ship size: {ship.size}): ')
             
-            ship_direction = input('Please select horizontal or vertical (h/v): ')
-            row = int(input('Please input a row number: '))
-            column = int(input('Please input a column number: '))
+            ship_direction = random.choice(ship_direction_list)
+            row = random.randint(0, 20)
+            column = random.randint(0, 20)
             
-            if ship_direction == 'h' or ship_direction == 'v':
-                self.set_ship_places(ship, ship_direction, row, column) #TODO need to move outside of loop function
-            else:
-                while ship_direction != 'h' or ship_direction != 'v':
-                    ship_direction = input('Please input another direction (h/v): ')
-                    
-                    if ship_direction == 'h' or ship_direction == 'v':
-                        self.set_ship_places(ship, ship_direction, row, column)
-                        break
-                
-               
-            
-    
+
+            self.set_ship_places(ship, ship_direction, row, column)
+        
     def locate_ship(self, row, column):
         for x in range(5):
             start_row = self.ships_locations[x][0]

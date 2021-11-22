@@ -1,6 +1,7 @@
 from human_player import HumanPlayer
 from game_board import GameBoard
 import random
+from computer_player import ComputerPlayer
 
 #LEGEND
 # '--' = open water
@@ -32,11 +33,36 @@ class PlayGame:
         self.game_board.display_ships_to_place()
         
     def get_players(self): #get player names and display current players
-        print('\nPlayer One -->')
-        self.player_one = HumanPlayer()
+        num_players_valid = False
         
-        print('Player Two -->')
-        self.player_two = HumanPlayer()
+        while num_players_valid == False:
+            num_players = int(input('How many players? (1 or 2): '))
+        
+            if num_players == 2:
+                print('\nPlayer One -->')
+                self.player_one = HumanPlayer()
+                
+                print('Player Two -->')
+                self.player_two = HumanPlayer()
+                
+                print('\nCurrent players: ')
+                print(f'Player One Name: {self.player_one.name}')
+                print(f'Player Two Name: {self.player_two.name}')
+                
+                num_players_valid = True
+                
+            elif num_players == 1:
+                print('\nPlayer One -->')
+                self.player_one = HumanPlayer()
+                
+                print('Player Two -->')
+                self.player_two = ComputerPlayer()
+                
+                print('\nCurrent players: ')
+                print(f'Player One Name: {self.player_one.name}')
+                print(f'Player Two Name: {self.player_two.name}')
+                
+                num_players_valid = True
         
         print('\nCurrent players: ')
         print(f'Player One Name: {self.player_one.name}')
