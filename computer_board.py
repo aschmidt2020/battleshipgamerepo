@@ -73,6 +73,9 @@ class ComputerBoard:
         if can_place_ship == False:
             if ship_direction == 'h': #placing ship validation
                 for spot in range(ship_size):
+                    if row > 20 or column > 20:
+                        can_place_ship = False
+                        break
                     if self.board[row][column] == '-- ':
                         column = column + 1
                         can_place_ship = True
@@ -82,7 +85,10 @@ class ComputerBoard:
          
             elif ship_direction == 'v':
                 for spot in range(ship_size):
-                    if self.board[row][column] == '-- ':
+                    if row > 20 or column > 20:
+                        can_place_ship = False
+                        break
+                    elif self.board[row][column] == '-- ':
                         row = row + 1   
                         can_place_ship = True
                     else:
@@ -92,10 +98,18 @@ class ComputerBoard:
         return can_place_ship
     
     def set_ship_places(self, ship, direction, row, column):
+        ship_direction_list = ['h', 'v']
         ship_size = ship.size
         ship_direction = direction
         can_place_ship = self.can_place_ship(ship, direction, row, column)
         
+        while can_place_ship == False: 
+            ship_direction = random.choice(ship_direction_list)
+            row = random.randint(1, 20)
+            column = random.randint(0, 20)
+            
+            can_place_ship = self.can_place_ship(ship, ship_direction, row, column)
+            
         if can_place_ship == True:
             if ship_direction == 'h':
                 start_row = row
@@ -120,11 +134,7 @@ class ComputerBoard:
                     row = row + 1
                 
                 self.ships_locations.append([start_row, end_row, start_column, end_column, ship_direction])
-                
-        while can_place_ship == False: 
-            print('Space not available Please select another space-->')
-            can_place_ship = self.can_place_ship(ship, input('Please select horizontal or vertical (h/v): '), int(input('Please input a new row: ')), int(input('Please input a new column: ')))
-
+          
     def place_all_ships(self):
         ship_direction_list = ['h', 'v']
         

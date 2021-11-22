@@ -64,29 +64,33 @@ class HumanBoard:
     
     
     def can_place_ship(self, ship, direction, row, column):
+        can_place_ship = False
         ship_size = ship.size
         ship_direction = direction
-        can_place_ship = False
         
+        if ship_direction == 'h': #placing ship validation
+            for spot in range(ship_size):
+                if row > 20 or column > 20:
+                    can_place_ship = False
+                    break
+                elif self.board[row][column] == '-- ':
+                    column = column + 1
+                    can_place_ship = True
+                else:
+                    can_place_ship = False
+                    break
         
-        if can_place_ship == False:
-            if ship_direction == 'h': #placing ship validation
-                for spot in range(ship_size):
-                    if self.board[row][column] == '-- ':
-                        column = column + 1
-                        can_place_ship = True
-                    else:
-                        can_place_ship = False
-                        break
-         
-            elif ship_direction == 'v':
-                for spot in range(ship_size):
-                    if self.board[row][column] == '-- ':
-                        row = row + 1   
-                        can_place_ship = True
-                    else:
-                        can_place_ship = False
-                        break
+        elif ship_direction == 'v':
+            for spot in range(ship_size):
+                if row > 20 or column > 20:
+                    can_place_ship = False
+                    break
+                elif self.board[row][column] == '-- ':
+                    row = row + 1   
+                    can_place_ship = True
+                else:
+                    can_place_ship = False
+                    break
 
         return can_place_ship
     
@@ -95,6 +99,14 @@ class HumanBoard:
         ship_direction = direction
         can_place_ship = self.can_place_ship(ship, direction, row, column)
         
+        while can_place_ship == False: 
+            print('Space not available Please select another space-->')
+            ship_direction = input('Please select horizontal or vertical (h/v): ')
+            row = int(input('Please input a new row: '))
+            column = int(input('Please input a new colum: '))
+            
+            can_place_ship = self.can_place_ship(ship, ship_direction, row, column)
+            
         if can_place_ship == True:
             if ship_direction == 'h':
                 start_row = row
@@ -120,9 +132,8 @@ class HumanBoard:
                 
                 self.ships_locations.append([start_row, end_row, start_column, end_column, ship_direction])
                 
-        while can_place_ship == False: 
-            print('Space not available Please select another space-->')
-            can_place_ship = self.can_place_ship(ship, input('Please select horizontal or vertical (h/v): '), int(input('Please input a new row: ')), int(input('Please input a new column: ')))
+
+            can_place_ship = self.can_place_ship(ship, ship_direction, row, column)
 
     def place_all_ships(self):
         
@@ -130,21 +141,22 @@ class HumanBoard:
             print(f'\nPlease place {ship.name} (ship size: {ship.size}): ')
             
             ship_direction = input('Please select horizontal or vertical (h/v): ')
-            row = int(input('Please input a row number: '))
-            column = int(input('Please input a column number: '))
             
             if ship_direction == 'h' or ship_direction == 'v':
-                self.set_ship_places(ship, ship_direction, row, column) #TODO need to move outside of loop function
+                row = int(input('Please input a row number: '))
+                column = int(input('Please input a column number: '))
             else:
                 while ship_direction != 'h' or ship_direction != 'v':
                     ship_direction = input('Please input another direction (h/v): ')
                     
                     if ship_direction == 'h' or ship_direction == 'v':
-                        self.set_ship_places(ship, ship_direction, row, column)
-                        break
-                
-               
-            
+                        row = int(input('Please input a row number: '))
+                        column = int(input('Please input a column number: '))
+                    
+                    break
+        
+            self.set_ship_places(ship, ship_direction, row, column) #TODO need to move outside of loop function
+
     
     def locate_ship(self, row, column):
         for x in range(5):
