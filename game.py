@@ -57,31 +57,33 @@ class PlayGame:
         #order of ship placement: destroyer (size 2), submarine (size 3), battleship one (size 4), battleship 2 (size 4), aircraft (size 5)
         print(f'{self.player_one.name}, please place destroyer (size 2): ')
         self.player_one.board.set_ship_places(self.player_one.board.ships_list[0],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
+        self.player_one.board.display_board()
+        
         print(f'\n{self.player_one.name}, please place submarine (size 3): ')
         self.player_one.board.set_ship_places(self.player_one.board.ships_list[1],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
         print(f'\n{self.player_one.name}, please place battleship number one (size 4): ')
         self.player_one.board.set_ship_places(self.player_one.board.ships_list[2],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
         print(f'\n{self.player_one.name}, please place battleship number two (size 4): ')
         self.player_one.board.set_ship_places(self.player_one.board.ships_list[3],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
         print(f'\n{self.player_one.name}, please place aircraft (size 5): ')
         self.player_one.board.set_ship_places(self.player_one.board.ships_list[4],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
@@ -94,31 +96,31 @@ class PlayGame:
         
         print(f'{self.player_two.name}, please place destroyer (size 2): ')
         self.player_two.board.set_ship_places(self.player_two.board.ships_list[0],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
         print(f'\n{self.player_two.name}, please place submarine (size 3): ')
         self.player_two.board.set_ship_places(self.player_two.board.ships_list[1],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
         print(f'\n{self.player_two.name}, please place battleship number one (size 4): ')
         self.player_two.board.set_ship_places(self.player_two.board.ships_list[2],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
         print(f'\n{self.player_two.name}, please place battleship number two (size 4): ')
         self.player_two.board.set_ship_places(self.player_two.board.ships_list[3],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
         print(f'\n{self.player_two.name}, please place aircraft (size 5): ')
         self.player_two.board.set_ship_places(self.player_two.board.ships_list[4],
-                                            input('Please select horizontal or vertical: '),
+                                            input('Please select horizontal or vertical (h/v): '),
                                             int(input('Please input a row number: ')),
                                             int(input('Please input a column number: ')))
         
