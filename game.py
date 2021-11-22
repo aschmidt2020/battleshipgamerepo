@@ -55,38 +55,11 @@ class PlayGame:
         
     def create_player_board_p1(self): 
         #order of ship placement: destroyer (size 2), submarine (size 3), battleship one (size 4), battleship 2 (size 4), aircraft (size 5)
-        print(f'{self.player_one.name}, please place destroyer (size 2): ')
-        self.player_one.board.set_ship_places(self.player_one.board.ships_list[0],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
+        print(f'{self.player_one.name}, please place all ships -->')
+        self.player_one.board.place_all_ships()
         
+        print(f'\n{self.player_one.name} here is your board:')
         self.player_one.board.display_board()
-        
-        print(f'\n{self.player_one.name}, please place submarine (size 3): ')
-        self.player_one.board.set_ship_places(self.player_one.board.ships_list[1],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
-        
-        print(f'\n{self.player_one.name}, please place battleship number one (size 4): ')
-        self.player_one.board.set_ship_places(self.player_one.board.ships_list[2],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
-        
-        print(f'\n{self.player_one.name}, please place battleship number two (size 4): ')
-        self.player_one.board.set_ship_places(self.player_one.board.ships_list[3],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
-        
-        print(f'\n{self.player_one.name}, please place aircraft (size 5): ')
-        self.player_one.board.set_ship_places(self.player_one.board.ships_list[4],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
-        
         
         print('\nPlayer 1 Board Completed\n')
         print('*************************')
@@ -94,36 +67,11 @@ class PlayGame:
     
     def create_player_board_p2(self):
         
-        print(f'{self.player_two.name}, please place destroyer (size 2): ')
-        self.player_two.board.set_ship_places(self.player_two.board.ships_list[0],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
+        print(f'{self.player_two.name}, please place all ships --> ')
+        self.player_two.board.place_all_ships()
         
-        print(f'\n{self.player_two.name}, please place submarine (size 3): ')
-        self.player_two.board.set_ship_places(self.player_two.board.ships_list[1],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
-        
-        print(f'\n{self.player_two.name}, please place battleship number one (size 4): ')
-        self.player_two.board.set_ship_places(self.player_two.board.ships_list[2],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
-        
-        print(f'\n{self.player_two.name}, please place battleship number two (size 4): ')
-        self.player_two.board.set_ship_places(self.player_two.board.ships_list[3],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
-        
-        print(f'\n{self.player_two.name}, please place aircraft (size 5): ')
-        self.player_two.board.set_ship_places(self.player_two.board.ships_list[4],
-                                            input('Please select horizontal or vertical (h/v): '),
-                                            int(input('Please input a row number: ')),
-                                            int(input('Please input a column number: ')))
-        
+        print(f'\n{self.player_two.name} here is your board:')
+        self.player_two.board.display_board()
         
         print('\nPlayer 2 Board Completed\n')
         print('*************************') 

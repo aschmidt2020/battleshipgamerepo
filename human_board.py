@@ -62,10 +62,12 @@ class HumanBoard:
             print(f'{ship.name}, Size: {ship.size}')
         print('\n')
     
+    
     def can_place_ship(self, ship, direction, row, column):
         ship_size = ship.size
         ship_direction = direction
         can_place_ship = False
+        
         
         if can_place_ship == False:
             if ship_direction == 'h': #placing ship validation
@@ -119,11 +121,32 @@ class HumanBoard:
                 self.ships_locations.append([start_row, end_row, start_column, end_column, ship_direction])
                 
         while can_place_ship == False: 
-            print('Please select another space.')
+            print('Space not available Please select another space-->')
             can_place_ship = self.can_place_ship(ship, input('Please select horizontal or vertical (h/v): '), int(input('Please input a new row: ')), int(input('Please input a new column: ')))
 
-    def locate_ship(self, row, column):
+    def place_all_ships(self):
         
+        for ship in self.ships_list:
+            print(f'\nPlease place {ship.name} (ship size: {ship.size}): ')
+            
+            ship_direction = input('Please select horizontal or vertical (h/v): ')
+            row = int(input('Please input a row number: '))
+            column = int(input('Please input a column number: '))
+            
+            if ship_direction == 'h' or ship_direction == 'v':
+                self.set_ship_places(ship, ship_direction, row, column)
+            else:
+                while ship_direction != 'h' or ship_direction != 'v':
+                    ship_direction = input('Please input another direction (h/v): ')
+                    
+                    if ship_direction == 'h' or ship_direction == 'v':
+                        self.set_ship_places(ship, ship_direction, row, column)
+                        break
+                
+               
+            
+    
+    def locate_ship(self, row, column):
         for x in range(5):
             start_row = self.ships_locations[x][0]
             end_row = self.ships_locations[x][1]
