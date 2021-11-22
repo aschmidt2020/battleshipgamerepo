@@ -151,6 +151,8 @@ class PlayGame:
         
                 player_one_turn = not player_one_turn
     
+    #TODO look into clearing console to prevent seeing history
+    
     def shoot_cannon_one_player(self):
         bool_list = [True, False]
         player_one_turn = random.choice(bool_list)
@@ -164,8 +166,14 @@ class PlayGame:
                 print('Here is your shooting board -->')
                 self.game_board_p1.display_board()
                 
+                #TODO add user input row/column validation
                 row = int(input('Player 1, please input a row number: '))
+                while row > 20 or row < 1 or row == None:
+                    row = int(input('Player 1, please input a new row number: '))
+                
                 column = int(input('Player 1, please input a column number: '))
+                while column > 20 or column < 1 or column == None:
+                    column = int(input('Player 1, please input a new column number: '))
             
                 if self.player_two.board.board[row][column] == '-- ':
                     print('Nothing but ocean here!\n')

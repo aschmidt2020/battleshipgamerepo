@@ -1,6 +1,6 @@
 from ship import Ship
 
-class HumanBoard:
+class HumanBoard: #inherit game_board
     def __init__(self):
         self.board = [[]]
         self.create_board()
@@ -155,7 +155,7 @@ class HumanBoard:
                     
                     break
         
-            self.set_ship_places(ship, ship_direction, row, column) #TODO need to move outside of loop function
+            self.set_ship_places(ship, ship_direction, row, column) 
 
     
     def locate_ship(self, row, column):

@@ -60,23 +60,3 @@ class GameBoard:
         for ship in self.ships_list:
             print(f'{ship.name}, Size: {ship.size}')
         print('\n')
-    
-    def set_ship_places(self, ship, direction, row, column):
-        ship_size = ship.size
-        ship_direction = direction
-        
-        if self.board[row][column] == '-- ':
-            if ship_direction == 'horizontal':
-                for spot in range (ship_size):
-                    self.board[row][column] = 'SS '
-                    column = column + 1
-
-            elif ship_direction == 'vertical':
-                for spot in range(ship_size):
-                    self.board[row][column] = 'SS '
-                    row = row + 1
-   
-        else:
-            print('Please available new row/column.')
-    
-        
