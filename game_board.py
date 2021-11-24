@@ -58,7 +58,7 @@ class GameBoard:
         self.ships_list.append(battleship_two)
         self.ships_list.append(aircraft)
     
-    def display_ships_to_place(self):\
+    def display_ships_to_place(self):
         """displays all 5 instantiated ships to place"""
         print('\nShips to place:')
         for ship in self.ships_list:
