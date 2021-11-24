@@ -1,7 +1,9 @@
 from game_board import GameBoard
+import os
 
 class Utilities:
     def display_instructions():
+        """displays instructions along with blank board and ships to place"""
         print('\nINSTRUCTIONS: ')
         print('This is a two player battleship game. The game board is 20x20 (displayed below).')
         print('Each person has five ships (displayed below).')
@@ -12,6 +14,9 @@ class Utilities:
         print("Let's Begin!")
         print('*************************')
 
-        game_board = GameBoard() #will display empty game board
-        game_board.display_board()
-        game_board.display_ships_to_place()
+        game_board = GameBoard() 
+        game_board.display_board() #will display empty game board
+        game_board.display_ships_to_place() #will display ships to place
+    
+    def clear_console():
+        os.system('cls')

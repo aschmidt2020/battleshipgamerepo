@@ -11,12 +11,14 @@ from utilities import Utilities
 
 class PlayGame:
     def __init__(self):
+        """initiates game with instructions and two unnamed players"""
         Utilities.display_instructions()
-        self.player_one = '' #get player names
+        self.player_one = '' 
         self.player_two = ''
 
 
-    def get_players(self): #get player names and display current players
+    def get_players(self):
+        """takes in user input to decide between 1 and 2 players and instantiate said players"""
         num_players_valid = False
         
         while num_players_valid == False:
@@ -47,6 +49,7 @@ class PlayGame:
         return num_players
     
     def run_game(self):
+        """runs game based on number of players"""
         num_players = self.get_players()
 
         if num_players == 2:
@@ -66,7 +69,8 @@ class PlayGame:
             
         self.display_winner()
    
-    def create_player_board_p1(self): 
+    def create_player_board_p1(self):
+        """creates board with placing ships for player one"""
         print(f'{self.player_one.name}, please place all ships -->')
         self.player_one.board.place_all_ships()
     
@@ -74,6 +78,7 @@ class PlayGame:
         print('*************************')
 
     def create_player_board_p2(self):
+        """creates board with placing ships for player two"""
         print(f'{self.player_two.name}, please place all ships --> ')
         self.player_two.board.place_all_ships()
         
@@ -81,6 +86,7 @@ class PlayGame:
         print('*************************') 
     
     def shoot_cannon_two_players(self):
+        """alternates player one/two and takes in user input for where to shoot"""
         bool_list = [True, False]
         player_one_turn = random.choice(bool_list)
         
@@ -106,6 +112,7 @@ class PlayGame:
                     self.player_one.shooting_board.board[row][column] = 'S* '
                     self.player_two.board.locate_ship(row, column)
                 
+                Utilities.clear_console()
                 player_one_turn = not player_one_turn
         
             elif player_one_turn == False:
@@ -129,11 +136,11 @@ class PlayGame:
                     self.player_two.shooting_board.board[row][column] = 'S* '
                     self.player_one.board.locate_ship(row, column)
         
+                Utilities.clear_console()
                 player_one_turn = not player_one_turn
-    
-    #TODO look into clearing console to prevent seeing history
-    
+
     def shoot_cannon_one_player(self):
+        """alternates player one/two and takes in user input for player one to shoot and uses random for computer shooting"""
         bool_list = [True, False]
         player_one_turn = random.choice(bool_list)
         
@@ -159,6 +166,7 @@ class PlayGame:
                     self.player_one.shooting_board.board[row][column] = 'S* '
                     self.player_two.board.locate_ship(row, column)
                 
+                Utilities.clear_console()
                 player_one_turn = not player_one_turn
         
             elif player_one_turn == False:
@@ -184,9 +192,11 @@ class PlayGame:
                     self.player_two.shooting_board.board[row][column] = 'S* '
                     self.player_one.board.locate_ship(row, column)
         
+                Utilities.clear_console()
                 player_one_turn = not player_one_turn
                 
     def validate_shoot_cannon_row(self, number):
+        """validates that row inputted by user is valid or will create loop until input is valid"""
         try:
             number_value = int(number)
             if number_value > 20 or number_value < 1:
@@ -211,6 +221,7 @@ class PlayGame:
             return row
         
     def validate_shoot_cannon_col (self, number):
+        """validates that column inputted by user is valid or will create loop until input is valid"""
         try:
             number_value = int(number)
             if number_value > 20 or number_value < 0:
@@ -235,9 +246,9 @@ class PlayGame:
             return  column
             
     def display_winner(self):
+        """displays winner based on which player lost all of their ships"""
         if len(self.player_one.board.ships_locations) == 0:
             print(f"\nAll of Player One's ships have been destroyed. {self.player_two.name}, you win the game!")
             
         if len(self.player_two.board.ships_locations) == 0:
             print(f"\nAll of Player Two's ships have been destroyed. {self.player_one.name}, you win the game!")
-            
