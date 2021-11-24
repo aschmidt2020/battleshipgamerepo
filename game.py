@@ -64,7 +64,6 @@ class PlayGame:
         num_players = self.get_players()
 
         if num_players == 2:
-            self.create_game_boards()
             self.create_player_board_p1()
             print(f'\n{self.player_one.name} here is your board:')
             self.player_one.board.display_board()
@@ -75,17 +74,12 @@ class PlayGame:
             
             self.shoot_cannon_two_players()
         elif num_players == 1:
-            self.create_game_boards()
             self.create_player_board_p1()
             self.create_player_board_p2()
             self.shoot_cannon_one_player()
             
         self.display_winner()
-        
-    def create_game_boards(self): #game boards are used to attack and keep track of where you shot, player board are used to track your own ships
-        self.game_board_p1 = GameBoard()
-        self.game_board_p2 = GameBoard()
-        
+   
     def create_player_board_p1(self): 
         print(f'{self.player_one.name}, please place all ships -->')
         self.player_one.board.place_all_ships()
@@ -111,7 +105,7 @@ class PlayGame:
                 self.player_one.board.display_board()
                 
                 print('Here is your shooting board -->')
-                self.game_board_p1.display_board()
+                self.player_one.shooting_board.display_board()
                 
                 row = self.validate_shoot_cannon_row(input('Player One, please input a row number: '))
                 column = self.validate_shoot_cannon_col(input('Player One, pease input a column number: '))
@@ -119,11 +113,11 @@ class PlayGame:
                 if self.player_two.board.board[row][column] == '-- ':
                     print('Nothing but ocean here!\n')
                     self.player_two.board.board[row][column] = 'xx '
-                    self.game_board_p1.board[row][column] = 'xx '
+                    self.player_one.shooting_board.board[row][column] = 'xx '
                 elif self.player_two.board.board[row][column] == 'SS ':
                     print('You hit a ship!\n')
                     self.player_two.board.board[row][column] = 'S* '
-                    self.game_board_p1.board[row][column] = 'S* '
+                    self.player_one.shooting_board.board[row][column] = 'S* '
                     self.player_two.board.locate_ship(row, column)
                 
                 player_one_turn = not player_one_turn
@@ -134,7 +128,7 @@ class PlayGame:
                 self.player_two.board.display_board()
                 
                 print('Here is your shooting board -->')
-                self.game_board_p2.display_board()
+                self.player_two.shooting_board.display_board()
                 
                 row = self.validate_shoot_cannon_row(input('Player Two, please input a row number: '))
                 column = self.validate_shoot_cannon_col(input('Player Two, please input a column number: '))
@@ -142,11 +136,11 @@ class PlayGame:
                 if self.player_one.board.board[row][column] == '-- ':
                     print('Nothing but ocean here!\n')
                     self.player_one.board.board[row][column] = 'xx '
-                    self.game_board_p2.board[row][column] = 'xx '
+                    self.player_two.shooting_board.board[row][column] = 'xx '
                 elif self.player_one.board.board[row][column] == 'SS ':
                     print('You hit a ship!\n')
                     self.player_one.board.board[row][column] = 'S* '
-                    self.game_board_p2.board[row][column] = 'S* '
+                    self.player_two.shooting_board.board[row][column] = 'S* '
                     self.player_one.board.locate_ship(row, column)
         
                 player_one_turn = not player_one_turn
@@ -164,7 +158,7 @@ class PlayGame:
                 self.player_one.board.display_board()
                 
                 print('Here is your shooting board -->')
-                self.game_board_p1.display_board()
+                self.player_one.shooting_board.display_board()
                 
                 row = self.validate_shoot_cannon_row(input('Player One, please input a row number: '))
                 column = self.validate_shoot_cannon_col(input('Player One, please input a column number: '))
@@ -172,11 +166,11 @@ class PlayGame:
                 if self.player_two.board.board[row][column] == '-- ':
                     print('Nothing but ocean here!\n')
                     self.player_two.board.board[row][column] = 'xx '
-                    self.game_board_p1.board[row][column] = 'xx '
+                    self.player_one.shooting_board.board[row][column] = 'xx '
                 elif self.player_two.board.board[row][column] == 'SS ':
                     print('You hit a ship!\n')
                     self.player_two.board.board[row][column] = 'S* '
-                    self.game_board_p1.board[row][column] = 'S* '
+                    self.player_one.shooting_board.board[row][column] = 'S* '
                     self.player_two.board.locate_ship(row, column)
                 
                 player_one_turn = not player_one_turn
@@ -197,11 +191,11 @@ class PlayGame:
                 if self.player_one.board.board[row][column] == '-- ':
                     print('Nothing but ocean here!\n')
                     self.player_one.board.board[row][column] = 'xx '
-                    self.game_board_p2.board[row][column] = 'xx '
+                    self.player_two.shooting_board.board[row][column] = 'xx '
                 elif self.player_one.board.board[row][column] == 'SS ':
                     print('You hit a ship!\n')
                     self.player_one.board.board[row][column] = 'S* '
-                    self.game_board_p2.board[row][column] = 'S* '
+                    self.player_two.shooting_board.board[row][column] = 'S* '
                     self.player_one.board.locate_ship(row, column)
         
                 player_one_turn = not player_one_turn
