@@ -113,6 +113,7 @@ class PlayGame:
                     self.player_two.board.locate_ship(row, column)
                 
                 Utilities.clear_console()
+                print('Cleared console prior to next player turn...')
                 player_one_turn = not player_one_turn
         
             elif player_one_turn == False:
@@ -137,6 +138,7 @@ class PlayGame:
                     self.player_one.board.locate_ship(row, column)
         
                 Utilities.clear_console()
+                print('Cleared console prior to next player turn...')
                 player_one_turn = not player_one_turn
 
     def shoot_cannon_one_player(self):
@@ -167,6 +169,7 @@ class PlayGame:
                     self.player_two.board.locate_ship(row, column)
                 
                 Utilities.clear_console()
+                print('Cleared console prior to next player turn...')
                 player_one_turn = not player_one_turn
         
             elif player_one_turn == False:
@@ -193,6 +196,7 @@ class PlayGame:
                     self.player_one.board.locate_ship(row, column)
         
                 Utilities.clear_console()
+                print('Cleared console prior to next player turn...')
                 player_one_turn = not player_one_turn
                 
     def validate_shoot_cannon_row(self, number):
