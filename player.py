@@ -1,5 +1,6 @@
 class Player:
     def __init__(self):
+        """creates player with name, board, and shooting board also calls function to create items"""
         self.name = ''
         self.board = ''
         self.shooting_board = ''
