@@ -112,8 +112,6 @@ class PlayGame:
                     self.player_one.shooting_board.board[row][column] = 'S* '
                     self.player_two.board.locate_ship(row, column)
                 
-                Utilities.clear_console()
-                print('Cleared console prior to next player turn...')
                 player_one_turn = not player_one_turn
         
             elif player_one_turn == False:
@@ -136,10 +134,11 @@ class PlayGame:
                     self.player_one.board.board[row][column] = 'S* '
                     self.player_two.shooting_board.board[row][column] = 'S* '
                     self.player_one.board.locate_ship(row, column)
-        
-                Utilities.clear_console()
-                print('Cleared console prior to next player turn...')
+    
                 player_one_turn = not player_one_turn
+                
+            Utilities.clear_console()
+            print('Cleared console prior to next round...')
 
     def shoot_cannon_one_player(self):
         """alternates player one/two and takes in user input for player one to shoot and uses random for computer shooting"""
@@ -168,8 +167,6 @@ class PlayGame:
                     self.player_one.shooting_board.board[row][column] = 'S* '
                     self.player_two.board.locate_ship(row, column)
                 
-                Utilities.clear_console()
-                print('Cleared console prior to next player turn...')
                 player_one_turn = not player_one_turn
         
             elif player_one_turn == False:
@@ -195,18 +192,17 @@ class PlayGame:
                     self.player_two.shooting_board.board[row][column] = 'S* '
                     self.player_one.board.locate_ship(row, column)
         
-                Utilities.clear_console()
-                print('Cleared console prior to next player turn...')
                 player_one_turn = not player_one_turn
-                
+            
+            Utilities.clear_console()
+            print('Cleared console prior to next player turn...')
+            
     def validate_shoot_cannon_row(self, number):
         """validates that row inputted by user is valid or will create loop until input is valid"""
         try:
             number_value = int(number)
             if number_value > 20 or number_value < 1:
                 raise Exception('Out of Shooting Range')
-            elif number == '':
-                raise ValueError
             else:
                 return number_value
         except Exception as err:
@@ -230,8 +226,6 @@ class PlayGame:
             number_value = int(number)
             if number_value > 20 or number_value < 0:
                 raise Exception('Out of Shooting Range')
-            elif number_value == '':
-                raise ValueError
             else:
                 return number_value
         except Exception as err:
