@@ -1,7 +1,7 @@
 from human_player import HumanPlayer
-from game_board import GameBoard
 import random
 from computer_player import ComputerPlayer
+from utilities import Utilities
 
 #LEGEND
 # '--' = open water
@@ -11,25 +11,11 @@ from computer_player import ComputerPlayer
 
 class PlayGame:
     def __init__(self):
-        self.display_instructions()
+        Utilities.display_instructions()
         self.player_one = '' #get player names
         self.player_two = ''
 
-    def display_instructions(self):
-        print('\nINSTRUCTIONS: ')
-        print('This is a two player battleship game. The game board is 20x20 (displayed below).')
-        print('Each person has five ships (displayed below).')
-        print("The game is a turn-based game that will continue until all of one person's ship are destoyed.")
-        print('You can waste a turn by shooting at the same location, so pay attention!')
-        print('Legend: (--) = open water, (SS) = ship placed, (S*) = ship hit, (xx) = miss')
-        print('We will start by letting you place your ships.')
-        print("Let's Begin!")
-        print('*************************')
-    
-        self.game_board = GameBoard() #will display empty game board
-        self.game_board.display_board()
-        self.game_board.display_ships_to_place()
-        
+
     def get_players(self): #get player names and display current players
         num_players_valid = False
         
