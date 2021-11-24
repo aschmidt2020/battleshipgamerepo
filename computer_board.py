@@ -4,15 +4,16 @@ from game_board import GameBoard
 
 class ComputerBoard(GameBoard):
     def __init__(self):
+        """inherits GameBoard init (board and ships) and adds list for list locations"""
         self.ships_locations = []
         super().__init__()
     
     def can_place_ship(self, ship, direction, row, column):
+        """determines if ship can be placed based on size and direction"""
         ship_size = ship.size
         ship_direction = direction
         can_place_ship = False
-        
-        
+          
         if can_place_ship == False:
             if ship_direction == 'h': #placing ship validation
                 for spot in range(ship_size):
@@ -41,6 +42,7 @@ class ComputerBoard(GameBoard):
         return can_place_ship
     
     def set_ship_places(self, ship, direction, row, column):
+        """if ship can be placed, will place ship and append it to ships_locations list"""
         ship_direction_list = ['h', 'v']
         ship_size = ship.size
         ship_direction = direction
@@ -79,6 +81,7 @@ class ComputerBoard(GameBoard):
                 self.ships_locations.append([start_row, end_row, start_column, end_column, ship_direction])
           
     def place_all_ships(self):
+        """for loop to place each ship for computer based on random function"""
         ship_direction_list = ['h', 'v']
         
         for ship in self.ships_list:
@@ -92,6 +95,7 @@ class ComputerBoard(GameBoard):
             self.set_ship_places(ship, ship_direction, row, column)
         
     def locate_ship(self, row, column):
+        """used to located which ship is hit"""
         for x in range(5):
             start_row = self.ships_locations[x][0]
             end_row = self.ships_locations[x][1]
@@ -104,6 +108,7 @@ class ComputerBoard(GameBoard):
                 break
 
     def is_ship_eliminated(self, start_row, end_row, start_column, end_column, ship_direction):
+        """determines if the ship that was hit is sunken"""
         ship_eliminated = False
         
         if ship_direction == 'h':

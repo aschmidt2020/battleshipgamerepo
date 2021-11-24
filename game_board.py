@@ -2,6 +2,7 @@ from ship import Ship
 
 class GameBoard:
     def __init__(self):
+        """creates 20x20 game board and creates 5 ships"""
         self.board = [[]]
         self.create_board()
         print('\n')
@@ -10,8 +11,8 @@ class GameBoard:
         self.ships_list = []
         self.create_ships()
         
-
     def create_board(self):
+        """creates 20x20 game board"""
         grid = [ ]
         rows, columns = (20, 20)
         
@@ -24,6 +25,7 @@ class GameBoard:
         self.board = grid
     
     def display_board(self):
+        """displays 20x20 game board with numbers along top and side"""
         rows, columns = (20, 20)
         
         for row in range(rows + 1):
@@ -41,8 +43,9 @@ class GameBoard:
                 else:
                     print(self.board[row][column], end = ' ')
             print()
-                
+      
     def create_ships(self):
+        """instantiates 5 Ships"""
         destroyer = Ship(2, 'Destroyer') 
         submarine = Ship(3, 'Sub')
         battleship_one = Ship(4, 'Battleship 1')
@@ -55,7 +58,8 @@ class GameBoard:
         self.ships_list.append(battleship_two)
         self.ships_list.append(aircraft)
     
-    def display_ships_to_place(self):
+    def display_ships_to_place(self):\
+        """displays all 5 instantiated ships to place"""
         print('\nShips to place:')
         for ship in self.ships_list:
             print(f'{ship.name}, Size: {ship.size}')
