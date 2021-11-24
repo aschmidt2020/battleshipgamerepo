@@ -113,8 +113,8 @@ class PlayGame:
                 print('Here is your shooting board -->')
                 self.game_board_p1.display_board()
                 
-                row = int(input('Player 1, please input a row number: '))
-                column = int(input('Player 1, please input a column number: '))
+                row = self.validate_shoot_cannon_row(input('Player One, please input a row number: '))
+                column = self.validate_shoot_cannon_col(input('Player One, pease input a column number: '))
             
                 if self.player_two.board.board[row][column] == '-- ':
                     print('Nothing but ocean here!\n')
@@ -136,8 +136,8 @@ class PlayGame:
                 print('Here is your shooting board -->')
                 self.game_board_p2.display_board()
                 
-                row = int(input('Player 2, please input a row number: '))
-                column = int(input('Player 2, please input a column number: '))
+                row = self.validate_shoot_cannon_row(input('Player Two, please input a row number: '))
+                column = self.validate_shoot_cannon_col(input('Player Two, please input a column number: '))
              
                 if self.player_one.board.board[row][column] == '-- ':
                     print('Nothing but ocean here!\n')
@@ -166,15 +166,9 @@ class PlayGame:
                 print('Here is your shooting board -->')
                 self.game_board_p1.display_board()
                 
-                #TODO add user input row/column validation
-                row = int(input('Player 1, please input a row number: '))
-                while row > 20 or row < 1 or row == None:
-                    row = int(input('Player 1, please input a new row number: '))
+                row = self.validate_shoot_cannon_row(input('Player One, please input a row number: '))
+                column = self.validate_shoot_cannon_col(input('Player One, please input a column number: '))
                 
-                column = int(input('Player 1, please input a column number: '))
-                while column > 20 or column < 1 or column == None:
-                    column = int(input('Player 1, please input a new column number: '))
-            
                 if self.player_two.board.board[row][column] == '-- ':
                     print('Nothing but ocean here!\n')
                     self.player_two.board.board[row][column] = 'xx '
@@ -212,6 +206,54 @@ class PlayGame:
         
                 player_one_turn = not player_one_turn
                 
+    def validate_shoot_cannon_row(self, number):
+        try:
+            number_value = int(number)
+            if number_value > 20 or number_value < 1:
+                raise Exception('Out of Shooting Range')
+            elif number == '':
+                raise ValueError
+            else:
+                return number_value
+        except Exception as err:
+            print(err)
+            row = int(input('Please input a new row number: '))
+            while row > 20 or row < 1 or row == '':
+                print('Out of Shooting Range')
+                row = int(input('Please input a new row number: '))
+            return row
+        except ValueError as err:
+            print(err)
+            row = int(input('Please input a new row number: '))
+            while row > 20 or row < 1 or row == '':
+                print('Out of Shooting Range')
+                row = int(input('Please input a new row number: '))
+            return row
+        
+    def validate_shoot_cannon_col (self, number):
+        try:
+            number_value = int(number)
+            if number_value > 20 or number_value < 0:
+                raise Exception('Out of Shooting Range')
+            elif number_value == '':
+                raise ValueError
+            else:
+                return number_value
+        except Exception as err:
+            print(err)
+            column = int(input('Please input a new column: '))
+            while column > 20 or column < 0 or column == '':
+                print('Out of Shooting Range')
+                column = int(input('Please input a new column: '))
+            return  column
+        except ValueError as err:
+            print(err)
+            column = int(input('Please input a new column: '))
+            while column > 20 or column < 0 or column == '':
+                print('Out of Shooting Range')
+                column = int(input('Please input a new column: '))
+            return  column
+            
     def display_winner(self):
         if len(self.player_one.board.ships_locations) == 0:
             print(f"\nAll of Player One's ships have been destroyed. {self.player_two.name}, you win the game!")
